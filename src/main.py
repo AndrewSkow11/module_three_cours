@@ -8,12 +8,18 @@ list_of_transaction = json_file_to_dict("operations.json")
 five_ex_transactions = find_executed_transactions(
     5, list_of_transaction)
 
+# сортировка по дате в реверсивном порядке
+sorted_five_ex_transactions = sorted(
+    five_ex_transactions, key=lambda x: x['date'], reverse=True)
+
+for transaction in sorted_five_ex_transactions:
+    print(convert_date(transaction['date']), transaction['description'])
+
+    if 'from' in transaction:
+        print(convert_bank_numbers(transaction['from']) +
+          " -> " + convert_bank_numbers(transaction['to']))
+    else:
+        print("... -> " + convert_bank_numbers(transaction['to']))
 
 
-
-
-# print(obj['date'], obj['description'])
-# print(f"{obj['from']} -> {obj['to']}")
-# print(obj['operationAmount']['amount'],
-#       obj['operationAmount']['currency']['name'])
-# transaction1 = transaction.Transaction(obj["id"])
+    print()
