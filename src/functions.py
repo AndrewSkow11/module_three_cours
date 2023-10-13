@@ -36,9 +36,21 @@ def convert_bank_numbers(str_of_numbers):
         new_form_numbers = str_of_numbers[-4:]
         return "Счет " + "**" + (new_form_numbers)
     else:
-        return "обработать как карту"
+        name_of_banc_card = ""
+        numbers_of_banc_card = ""
+        for symbol in str_of_numbers:
+            if symbol.isalpha():
+                name_of_banc_card += symbol
+            elif symbol.isdigit():
+                numbers_of_banc_card += symbol
+        numbers_formatted = (numbers_of_banc_card[0:4] + " "
+                             + numbers_of_banc_card[4:6] + "** **** "
+                             + numbers_of_banc_card[-4:])
 
-print(convert_bank_numbers("Счет 48894435694657014368"))
+
+        return name_of_banc_card + " " + numbers_formatted
+
+#print(convert_bank_numbers("Счет 48894435694657014368"))
 #print(convert_bank_numbers("Visa Gold 5999414228426353"))
 
 
