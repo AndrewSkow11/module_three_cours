@@ -1,6 +1,5 @@
 import json
 
-
 def json_file_to_dict(filename):
     """Преобразует json file к словарю"""
     with open(filename) as file:
@@ -12,24 +11,6 @@ def find_executed_transactions(list_of_all_transactions):
         if transaction.get('state') == 'EXECUTED' and transaction.get('date'):
             list_of_executed_transactions.append(transaction)
     return list_of_executed_transactions
-
-def get_transactions_with_date(list_of_all_transactions):
-    list_of_transaction_with_date = []
-    for transaction in list_of_all_transactions:
-        if transaction.get('date'):
-            list_of_transaction_with_date.append(transaction)
-    return list_of_transaction_with_date
-
-
-# def find_executed_transactions(number, list_of_all_transactions):
-#     """Возвращает список из заданного числа выполненных транзакций"""
-#     list_of_executed_transactions = []
-#     for transaction in list_of_all_transactions:
-#         if transaction['state'] == 'EXECUTED':
-#             list_of_executed_transactions.append(transaction)
-#             if len(list_of_executed_transactions) >= number:
-#                 break
-#     return list_of_executed_transactions
 
 
 def convert_date(str_of_date):
@@ -63,14 +44,3 @@ def convert_bank_numbers(str_of_numbers):
 
 
         return name_of_banc_card + " " + numbers_formatted
-
-#print(convert_bank_numbers("Счет 48894435694657014368"))
-#print(convert_bank_numbers("Visa Gold 5999414228426353"))
-
-
-
-
-# Пример вывода для одной операции:
-# 14.10.2018 Перевод организации
-# Visa Platinum 7000 79** **** 6361 -> Счет **9638
-# 82771.72 руб.
