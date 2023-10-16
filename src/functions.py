@@ -6,16 +6,30 @@ def json_file_to_dict(filename):
     with open(filename) as file:
         return json.load(file)
 
-
-def find_executed_transactions(number, list_of_all_transactions):
-    """Возвращает список из заданного числа выполненных транзакций"""
+def find_executed_transactions(list_of_all_transactions):
     list_of_executed_transactions = []
     for transaction in list_of_all_transactions:
-        if transaction['state'] == 'EXECUTED':
+        if transaction.get('state') == 'EXECUTED' and transaction.get('date'):
             list_of_executed_transactions.append(transaction)
-            if len(list_of_executed_transactions) >= number:
-                break
     return list_of_executed_transactions
+
+def get_transactions_with_date(list_of_all_transactions):
+    list_of_transaction_with_date = []
+    for transaction in list_of_all_transactions:
+        if transaction.get('date'):
+            list_of_transaction_with_date.append(transaction)
+    return list_of_transaction_with_date
+
+
+# def find_executed_transactions(number, list_of_all_transactions):
+#     """Возвращает список из заданного числа выполненных транзакций"""
+#     list_of_executed_transactions = []
+#     for transaction in list_of_all_transactions:
+#         if transaction['state'] == 'EXECUTED':
+#             list_of_executed_transactions.append(transaction)
+#             if len(list_of_executed_transactions) >= number:
+#                 break
+#     return list_of_executed_transactions
 
 
 def convert_date(str_of_date):
