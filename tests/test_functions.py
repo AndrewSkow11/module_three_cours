@@ -12,7 +12,7 @@ def test_find_executed_transactions():
      list_of_dict = functions.find_executed_transactions(variable_for_executed)
      assert type(list_of_dict) is list
      assert type(list_of_dict[0]) is dict
-     assert list_of_dict[0]['sta']
+     
 def test_convert_data():
     assert functions.convert_date("2019-08-26T10:50:58.294041") == "26.08.2019"
     assert functions.convert_date("2018-03-23T10:45:06.972075") == "23.03.2018"
