@@ -1,4 +1,7 @@
-from functions import *
+from src.functions import json_file_to_dict
+from src.functions import find_executed_transactions
+from src.functions import convert_date
+from src.functions import convert_bank_numbers
 
 # получаем полный список словарей
 list_of_transaction = json_file_to_dict("operations.json")
@@ -25,5 +28,5 @@ for transaction in sorted_list_of_transactions[:5]:
 
     print(transaction['operationAmount']['amount'],
           transaction['operationAmount']['currency']['name'])
-
+    #  для пустой строчки после интерации
     print()

@@ -6,6 +6,8 @@ def json_file_to_dict(filename):
         return json.load(file)
 
 def find_executed_transactions(list_of_all_transactions):
+    """Принимает список словарей (список всех транзакций)
+    Возвращает только исполненные транзакции"""
     list_of_executed_transactions = []
     for transaction in list_of_all_transactions:
         if transaction.get('state') == 'EXECUTED' and transaction.get('date'):
@@ -31,16 +33,16 @@ def convert_bank_numbers(str_of_numbers):
         new_form_numbers = str_of_numbers[-4:]
         return "Счет " + "**" + (new_form_numbers)
     else:
-        name_of_banc_card = ""
+        name_of_banc_card = []
         numbers_of_banc_card = ""
         for symbol in str_of_numbers:
             if symbol.isalpha():
                 name_of_banc_card += symbol
             elif symbol.isdigit():
                 numbers_of_banc_card += symbol
+
         numbers_formatted = (numbers_of_banc_card[0:4] + " "
                              + numbers_of_banc_card[4:6] + "** **** "
                              + numbers_of_banc_card[-4:])
-
-
-        return name_of_banc_card + " " + numbers_formatted
+        return (str_of_numbers[0: -16] + str_of_numbers[-16: -12] +
+                " **** **" +str_of_numbers[-6:-4] + " " + str_of_numbers[-4:])
